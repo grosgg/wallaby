@@ -7,7 +7,7 @@ module Document
 
   def self.build(title:, questions:)
     Prawn::Fonts::AFM.hide_m17n_warning = true
-    Prawn::Document.generate("output/#{title.downcase}.pdf") do
+    Prawn::Document.new do
       # stroke_axis
 
       # Timestamp
