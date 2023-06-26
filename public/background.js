@@ -12,7 +12,7 @@ function setup() {
   const canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent('root');
 
-  features.style = random(["curve", "zigzag", "straight"]);
+  features.style = random(["zigzag", "straight"]);
   features.bg1 = random(colors);
   features.bg2 = random(colors.filter(c => c != features.bg1));
   features.pt1 = { x: width/3, y: height/3 }
@@ -33,18 +33,6 @@ function draw() {
 
 
   switch (features.style) {
-    case "curve":
-      beginShape();
-      vertex(0, height);
-      vertex(0, height);
-      vertex(0, height/2);
-      curveVertex(features.pt1.x, features.pt1.y);
-      curveVertex(features.pt2.x, features.pt2.y);
-      vertex(width, height/2);
-      vertex(width, height);
-      vertex(width, height);
-      endShape();
-      break;
     case "zigzag":
       beginShape();
       vertex(0, height);

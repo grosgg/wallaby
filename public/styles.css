@@ -29,4 +29,21 @@ main {
   border-radius: 10px;
   border: 5px solid black;
   padding: 20px;
+  text-align: center;
+}
+
+.btn {
+  display: block;
+  border-radius: 10px;
+  border: 5px solid black;
+  padding: 20px;
+  box-shadow: 5px 5px black;
+  text-decoration: none;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.credits {
+  text-decoration: none;
+  color: gray;
 }
