@@ -1,8 +1,8 @@
 module Exercices
   module Multiplication
     def self.generate
-      x = rand(100)
-      y = rand(100)
+      x = rand(1000)
+      y = rand(1000)
 
       { question: "#{x} x #{y} =", solution: x * y }
     end

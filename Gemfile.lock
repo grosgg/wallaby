@@ -1,18 +1,33 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aws-eventstream (1.2.0)
+    aws-partitions (1.787.0)
+    aws-sdk-core (3.178.0)
+      aws-eventstream (~> 1, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.651.0)
+      aws-sigv4 (~> 1.5)
+      jmespath (~> 1, >= 1.6.1)
+    aws-sdk-kms (1.71.0)
+      aws-sdk-core (~> 3, >= 3.177.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.130.0)
+      aws-sdk-core (~> 3, >= 3.177.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.6)
+    aws-sigv4 (1.6.0)
+      aws-eventstream (~> 1, >= 1.0.2)
+    jmespath (1.6.2)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
-    nio4r (2.5.9)
     pdf-core (0.9.0)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
       ttfunk (~> 1.7)
-    puma (6.3.0)
-      nio4r (~> 2.0)
     rack (2.2.7)
     rack-protection (3.0.6)
       rack
+    rake (13.0.6)
     ruby2_keywords (0.0.5)
     sinatra (3.0.6)
       mustermann (~> 3.0)
@@ -23,15 +38,16 @@ GEM
     ttfunk (1.7.0)
 
 PLATFORMS
-  arm64-darwin-22
+  ruby
 
 DEPENDENCIES
+  aws-sdk-s3
   prawn
-  puma
+  rake
   sinatra
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 2.7.7p221
 
 BUNDLED WITH
-   2.4.12
+   2.1.4

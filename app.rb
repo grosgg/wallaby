@@ -6,29 +6,38 @@ require_relative "exercices/division"
 require_relative "document"
 
 get '/' do
+  @recents = Document::get_recents
   erb :index
 end
 
+get '/about' do
+  erb :about
+end
+
 get '/additions' do
-  content_type 'application/pdf'
   questions = Document::TOTAL.times.map { Exercices::Addition::generate }
-  Document::build(title: "Additions", questions:).render
+  doc = Document::build(title: "Additions", questions: questions)
+  Document::put(document: doc, type: "additions")
+  redirect(uri("/"))
 end
 
 get '/soustractions' do
-  content_type 'application/pdf'
   questions = Document::TOTAL.times.map { Exercices::Subtraction::generate }
-  Document::build(title: "Soustractions", questions:).render
+  doc = Document::build(title: "Soustractions", questions: questions)
+  Document::put(document: doc, type: "soustractions")
+  redirect(uri("/"))
 end
 
 get '/multiplications' do
-  content_type 'application/pdf'
   questions = Document::TOTAL.times.map { Exercices::Multiplication::generate }
-  Document::build(title: "Multiplications", questions:).render
+  doc = Document::build(title: "Multiplications", questions: questions)
+  Document::put(document: doc, type: "multiplications")
+  redirect(uri("/"))
 end
 
 get '/divisions' do
-  content_type 'application/pdf'
   questions = Document::TOTAL.times.map { Exercices::Division::generate }
-  Document::build(title: "Divisions", questions:).render
+  doc = Document::build(title: "Divisions", questions: questions)
+  Document::put(document: doc, type: "divisions")
+  redirect(uri("/"))
 end

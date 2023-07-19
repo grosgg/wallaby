@@ -1,0 +1,25 @@
+{
+  "name": "wallaby",
+  "version": "1.0.0",
+  "description": "A smaller kangaroo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grosgg/wallaby.git"
+  },
+  "keywords": [
+    "maths",
+    "exercices",
+    "pdf"
+  ],
+  "author": "grosgg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/grosgg/wallaby/issues"
+  },
+  "homepage": "https://github.com/grosgg/wallaby#readme",
+  "devDependencies": {
+    "serverless": "^3.33.0",
+    "serverless-api-gateway-throttling": "^2.0.3",
+    "serverless-rack": "^1.0.8"
+  }
+}
