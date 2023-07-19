@@ -1,3 +1,19 @@
-output/*
+# package directories
+node_modules
 
+# MacOS
 *.DS_Store
+
+# bundler config
+/.bundle
+/vendor/
+
+# serverless directories
+.serverless
+
+# env
+/.env*
+!.env.template
+
+# IDE settings
+/.vscode

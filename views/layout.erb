@@ -1,15 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <% if ENV["APP_ENV"] == "production" %>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TP6RJ4SRHD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-TP6RJ4SRHD');
+  </script>
+  <% end %>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wallaby</title>
-  <link rel="stylesheet" href="/styles.css">
+
+  <!-- Primary Meta Tags -->
+  <title>Wallaby Maths</title>
+  <meta name="title" content="Wallaby Maths" />
+  <meta name="description" content="Générez des exercices de maths à imprimer" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wallaby.vieux.click/" />
+  <meta property="og:title" content="Wallaby Maths" />
+  <meta property="og:description" content="Générez des exercices de maths à imprimer" />
+  <meta property="og:image" content="https://s3.ap-northeast-1.amazonaws.com/cdn.vieux.click/wallaby/logo.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://wallaby.vieux.click/" />
+  <meta property="twitter:title" content="Wallaby Maths" />
+  <meta property="twitter:description" content="Générez des exercices de maths à imprimer" />
+  <meta property="twitter:image" content="https://s3.ap-northeast-1.amazonaws.com/cdn.vieux.click/wallaby/logo.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Belanosima&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js" integrity="sha512-3RlxD1bW34eFKPwj9gUXEWtdSMC59QqIqHnD8O/NoTwSJhgxRizdcFVQhUMFyTp5RwLTDL0Lbcqtl8b7bFAzog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="/background.js"></script>
+  <style><%= File.read "public/styles.css" %></style>
 </head>
 <body id="root">
   <main>
@@ -17,5 +47,6 @@
       <%= yield %>
     </div>
   </main>
+  <script><%= File.read "public/background.js" %></script>
 </body>
 </html>

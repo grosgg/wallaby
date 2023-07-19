@@ -1,0 +1,77 @@
+service: wallaby
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: ruby2.7
+  region: ap-northeast-1
+  deploymentMethod: direct
+  stage: ${opt:stage, 'development'}
+  environment:
+    APP_ENV: ${self:provider.stage}
+    S3_MATHS_EXERCICES_BUCKET: ${self:service}-${self:provider.stage}-maths-exercices
+    MATHS_EXERCICES_ROOT_URL: 'https://${self:service}-${self:provider.stage}-maths-exercices.s3.${self:provider.region}.amazonaws.com/'
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - s3:ListBucket
+            - s3:GetObject
+            - s3:PutObject
+          Resource:
+            - 'arn:aws:s3:::${self:provider.environment.S3_MATHS_EXERCICES_BUCKET}'
+            - 'arn:aws:s3:::${self:provider.environment.S3_MATHS_EXERCICES_BUCKET}/*'
+
+plugins:
+  - serverless-rack
+  - serverless-api-gateway-throttling
+package:
+  patterns:
+    - '!output/**'
+
+custom:
+  apiGatewayThrottling:
+    maxRequestsPerSecond: 1
+    maxConcurrentRequests: 1
+
+functions:
+  api:
+    handler: rack_adapter.handler
+    events:
+      - http: ANY /
+      - http: ANY /{proxy+}
+
+resources:
+  Resources:
+    S3MathsExercicesBucket:
+      Type: 'AWS::S3::Bucket'
+      Properties:
+        BucketName: ${self:provider.environment.S3_MATHS_EXERCICES_BUCKET}
+        PublicAccessBlockConfiguration:
+          BlockPublicPolicy: false
+        LifecycleConfiguration:
+          Rules:
+            -
+              ExpirationInDays: 1
+              Prefix: '/'
+              Status: Enabled
+    S3MathsExercicesBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket: !Ref S3MathsExercicesBucket
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement: 
+            - Effect: Allow
+              Action: 
+                - "s3:GetObject"
+              Resource: !Join
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref S3MathsExercicesBucket
+                  - /*
+              Principal: "*"

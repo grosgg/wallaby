@@ -1,22 +1,23 @@
-# wallaby
+# [wallaby](https://wallaby.vieux.click)
 
-Ruby command tool to generate pdf documents of mathematics exercices and their solutions.
+Sinatra app generating pdf documents of mathematics exercices with their solutions.
 
 ## Installation
 - Clone repo
-- Bundle install
+- Install packages: `npm install`
+- Setup your AWS credentials with sufficient permissions
+- Deploy with serverless: `sls deploy`
 
-## Usage
-- Additions: `ruby generate_additions.rb`
-- Subtractions: `ruby generate_subtractions.rb`
-- Multiplications: `ruby generate_multiplications.rb`
-- Divisions: `ruby generate_divisions.rb`
+## Exercice types
+- Additions
+- Subtractions
+- Multiplications
+- Divisions
 
 ## Notes
-- pdfs are generated in the `output` folder
 - Everything is hardcoded in French at the moment
-- Range for x and y is arbitrary and harcoded
+- Difficulty is arbitrary and harcoded
 
 ## Objectives
-- Deploy to AWS with AppRunner
 - Add more exercice types
+- Add layout options

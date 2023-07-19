@@ -1,8 +1,20 @@
-<h1>Wallaby</h1>
+<h1>Wallaby Maths</h1>
 
-<a class="btn" href="/additions" target="_blank">Additions</a>
-<a class="btn" href="/soustractions" target="_blank">Soustractions</a>
-<a class="btn" href="/multiplications" target="_blank">Multiplications</a>
-<a class="btn" href="/divisions" target="_blank">Divisions</a>
+<% if @recents.any? %>
+  <div class="recents">
+    <h2>Récents</h2>
+    <% @recents.sort{|a, b| b[:label] <=> a[:label] }.each do |r| %>
+      <p><a href="<%= ENV['MATHS_EXERCICES_ROOT_URL'] + r[:key] %>"><%= r[:label] %></a></p>
+    <% end %>
+  </div>
+<% end %>
 
-<p><a class="credits" href="https://linktr.ee/grosgg">@grosgg</a></p>
+<h2>Générer</h2>
+<a class="btn" href="<%= uri('/additions') %>">Additions</a>
+<a class="btn" href="<%= uri('/soustractions') %>">Soustractions</a>
+<a class="btn" href="<%= uri('/multiplications') %>">Multiplications</a>
+<a class="btn" href="<%= uri('/divisions') %>">Divisions</a>
+
+<p>
+  <a class="credits" href="<%= uri('/about') %>">À propos</a>
+</p>
