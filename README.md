@@ -13,6 +13,7 @@ Sinatra app generating pdf documents of mathematics exercices with their solutio
 - Subtractions
 - Multiplications
 - Divisions
+- Problems
 
 ## Notes
 - Everything is hardcoded in French at the moment

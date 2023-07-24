@@ -19,18 +19,18 @@ module Document
       # Title
       font_size(25) { text title, align: :center }
 
-      # Exercices
+      # Exercises
       for q in 0..(TOTAL-1) do
         bounding_box([(q%2) * bounds.right / COLUMNS, 660 - (q/2) * 660 / ROWS + 20], width: bounds.right / COLUMNS, height: 660 / ROWS) do
           transparent(0.5) { stroke_bounds }
-          draw_text "#{q+1}) #{questions[q][:question]}", at: [5, bounds.top - 15]
+          text_box "#{q+1}) #{questions[q][:question]}", at: [5, bounds.top - 15], width: bounds.width - 25
         end
       end
 
       # Solutions
       formatted_solutions = questions.map.with_index{|q, i| "(#{i+1}) #{q[:solution]}"}.join(', ')
       rotate(180, origin: [bounds.right / 2, 10]) do
-        font_size(8) { draw_text "#{timestamp.strftime("%d/%m/%Y %T")} --- #{formatted_solutions}", at: [5, 15] }
+        font_size(8) { text_box "#{timestamp.strftime("%d/%m/%Y %T")} #{title} --- #{formatted_solutions}", at: [5, 15], width: bounds.width }
       end
     end
   end
