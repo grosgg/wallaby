@@ -1,5 +1,5 @@
 module Factories
-  class ItemName
+  class KidItemName
     extend Factories::Base
 
     NAMES = %w(billes yens bonbons chocolats).freeze
