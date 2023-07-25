@@ -43,6 +43,6 @@ get '/problems' do
     Kernel.const_get("Exercises::Problems::Problem#{%w{01 02 03 04 05}.sample}").generate
   end
   doc = Document::build(title: "Problèmes", questions: questions)
-  Document::put(document: doc, type: "problems")
+  Document::put(document: doc, type: "problèmes")
   redirect(uri("/"))
 end
