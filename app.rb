@@ -2,7 +2,8 @@ require "sinatra"
 Dir["lib/**/*.rb"].each {|file| require_relative file }
 
 get '/' do
-  @recents = Document::get_recents
+  @recents = Document::get_recents.sort{|a, b| b[:label] <=> a[:label] }
+  @counts = Document::get_counts(@recents)
   erb :index
 end
 

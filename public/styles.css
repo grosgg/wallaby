@@ -60,6 +60,10 @@ h2, .recents {
   margin: 10px;
 }
 
+.btn.disabled {
+  background-color: grey;
+}
+
 .credits {
   text-decoration: none;
   color: gray;

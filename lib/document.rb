@@ -59,6 +59,17 @@ module Document
     end || []
   end
 
+  def self.get_counts(recents)
+    keys = recents.map{|r| r[:key]}
+    {
+      problems: keys.map{|k| /problèmes/ =~ k}.compact.count,
+      additions: keys.map{|k| /additions/ =~ k}.compact.count,
+      subtractions: keys.map{|k| /soustractions/ =~ k}.compact.count,
+      multiplications: keys.map{|k| /multiplications/ =~ k}.compact.count,
+      divisions: keys.map{|k| /divisions/ =~ k}.compact.count,
+    }
+  end
+
   def self.create_key(exercice_name)
     "#{exercice_name}_#{Time.now.getlocal("+09:00").strftime("%Y%m%d%H%M%S")}.pdf"
   end
