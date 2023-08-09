@@ -13,7 +13,7 @@ module Document
       # stroke_axis
 
       # Timestamp
-      timestamp =  Time.now
+      timestamp =  Time.now.localtime("+09:00")
       font_size(8) { text timestamp.strftime("Généré le %d/%m/%Y à %T"), align: :right }
 
       # Title
