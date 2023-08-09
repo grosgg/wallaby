@@ -3,7 +3,7 @@ require "aws-sdk-s3"
 require "prawn"
 
 module Document
-  TOTAL = 8
+  TOTAL = 10
   COLUMNS = 2
   ROWS = TOTAL / COLUMNS
 
