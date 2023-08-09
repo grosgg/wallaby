@@ -3,7 +3,7 @@ require "aws-sdk-s3"
 require "prawn"
 
 module Document
-  TOTAL = 8
+  TOTAL = 10
   COLUMNS = 2
   ROWS = TOTAL / COLUMNS
 
@@ -13,7 +13,7 @@ module Document
       # stroke_axis
 
       # Timestamp
-      timestamp =  Time.now
+      timestamp =  Time.now.localtime("+09:00")
       font_size(8) { text timestamp.strftime("Généré le %d/%m/%Y à %T"), align: :right }
 
       # Title
@@ -57,6 +57,17 @@ module Document
         label: "#{time.localtime("+09:00").strftime("%m/%d %H:%M:%S")} #{key.split('_').first.capitalize}"
       }
     end || []
+  end
+
+  def self.get_counts(recents)
+    keys = recents.map{|r| r[:key]}
+    {
+      problems: keys.map{|k| /problèmes/ =~ k}.compact.count,
+      additions: keys.map{|k| /additions/ =~ k}.compact.count,
+      subtractions: keys.map{|k| /soustractions/ =~ k}.compact.count,
+      multiplications: keys.map{|k| /multiplications/ =~ k}.compact.count,
+      divisions: keys.map{|k| /divisions/ =~ k}.compact.count,
+    }
   end
 
   def self.create_key(exercice_name)

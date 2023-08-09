@@ -3,19 +3,47 @@
 <% if @recents.any? %>
   <div class="recents">
     <h2>Récents</h2>
-    <% @recents.sort{|a, b| b[:label] <=> a[:label] }.each do |r| %>
+    <% @recents.each do |r| %>
       <p><a href="<%= ENV['MATHS_EXERCICES_ROOT_URL'] + r[:key] %>"><%= r[:label] %></a></p>
     <% end %>
   </div>
 <% end %>
 
 <h2>Générer</h2>
-<a class="btn" href="<%= uri('/problems') %>">Problèmes</a>
+
+<h3>Problèmes</h3>
+
+<% if @counts[:problems] < 5 %>
+<a class="btn" href="<%= uri('/problems') %>">Au hasard</a>
+<% else %>
+<span class="btn disabled">Au hasard</span>
+<% end %>
+
 <h3>Opérations</h3>
+
+<% if @counts[:additions] < 5 %>
 <a class="btn" href="<%= uri('/additions') %>">Additions</a>
+<% else %>
+<span class="btn disabled">Additions</span>
+<% end %>
+
+<% if @counts[:subtractions] < 5 %>
 <a class="btn" href="<%= uri('/soustractions') %>">Soustractions</a>
+<% else %>
+<span class="btn disabled">Soustractions</span>
+<% end %>
+
+<% if @counts[:multiplications] < 5 %>
 <a class="btn" href="<%= uri('/multiplications') %>">Multiplications</a>
+<% else %>
+<span class="btn disabled">Multiplications</span>
+<% end %>
+
+<% if @counts[:divisions] < 5 %>
 <a class="btn" href="<%= uri('/divisions') %>">Divisions</a>
+<% else %>
+<span class="btn disabled">Divisions</span>
+<% end %>
 
 <p>
   <a class="credits" href="<%= uri('/about') %>">À propos</a>

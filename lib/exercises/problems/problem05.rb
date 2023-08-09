@@ -18,7 +18,7 @@ module Exercises
         
 
         {
-          question: "#{factory::SHOP} de #{name} a vendu #{prices.map{|p| p[:label] }.join(', ')}. Calcule le montal total d'argent gagné.",
+          question: "#{factory::SHOP} de #{name} a vendu #{prices.map{|p| p[:label] }.join(', ')}. Calcule le montant total d'argent gagné.",
           solution: prices.map{|p| p[:unit_price] * p[:quantity]}.sum
         }
       end

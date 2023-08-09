@@ -2,7 +2,8 @@ require "sinatra"
 Dir["lib/**/*.rb"].each {|file| require_relative file }
 
 get '/' do
-  @recents = Document::get_recents
+  @recents = Document::get_recents.sort{|a, b| b[:label] <=> a[:label] }
+  @counts = Document::get_counts(@recents)
   erb :index
 end
 
@@ -40,9 +41,9 @@ end
 
 get '/problems' do
   questions = Document::TOTAL.times.map do
-    Kernel.const_get("Exercises::Problems::Problem#{%w{01 02 03 04 05}.sample}").generate
+    Kernel.const_get("Exercises::Problems::Problem#{%w{01 02 03 04 05 06}.sample}").generate
   end
   doc = Document::build(title: "Problèmes", questions: questions)
-  Document::put(document: doc, type: "problems")
+  Document::put(document: doc, type: "problèmes")
   redirect(uri("/"))
 end

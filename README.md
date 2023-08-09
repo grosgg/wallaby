@@ -7,6 +7,8 @@ Sinatra app generating pdf documents of mathematics exercices with their solutio
 - Install packages: `npm install`
 - Setup your AWS credentials with sufficient permissions
 - Deploy with serverless: `sls deploy`
+- Run locally: `sls rack serve`
+- Local console: `bundle exec irb -r ./app.rb`
 
 ## Exercice types
 - Additions
