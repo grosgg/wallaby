@@ -21,7 +21,7 @@ module Document
 
       # Exercises
       for q in 0..(TOTAL-1) do
-        bounding_box([(q%2) * bounds.right / COLUMNS, 660 - (q/2) * 660 / ROWS + 20], width: bounds.right / COLUMNS, height: 660 / ROWS) do
+        bounding_box([(q%COLUMNS) * bounds.right / COLUMNS, 660 - (q/COLUMNS) * 660 / ROWS + 20], width: bounds.right / COLUMNS, height: 660 / ROWS) do
           transparent(0.5) { stroke_bounds }
           text_box "#{q+1}) #{questions[q][:question]}", at: [5, bounds.top - 15], width: bounds.width - 25
         end
@@ -62,6 +62,7 @@ module Document
   def self.get_counts(recents)
     keys = recents.map{|r| r[:key]}
     {
+      tables: keys.map{|k| /tables/ =~ k}.compact.count,
       problems: keys.map{|k| /problèmes/ =~ k}.compact.count,
       additions: keys.map{|k| /additions/ =~ k}.compact.count,
       subtractions: keys.map{|k| /soustractions/ =~ k}.compact.count,

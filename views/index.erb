@@ -11,12 +11,16 @@
 
 <h2>Générer</h2>
 
-<h3>Problèmes</h3>
+<% if @counts[:tables] < 5 %>
+<a class="btn" href="<%= uri('/tables') %>">Tables de multiplications</a>
+<% else %>
+<span class="btn disabled">Tables de multiplications</span>
+<% end %>
 
 <% if @counts[:problems] < 5 %>
-<a class="btn" href="<%= uri('/problems') %>">Au hasard</a>
+<a class="btn" href="<%= uri('/problems') %>">Problèmes au hasard</a>
 <% else %>
-<span class="btn disabled">Au hasard</span>
+<span class="btn disabled">Problèmes au hasard</span>
 <% end %>
 
 <h3>Opérations</h3>

@@ -47,3 +47,10 @@ get '/problems' do
   Document::put(document: doc, type: "problèmes")
   redirect(uri("/"))
 end
+
+get '/tables' do
+  questions = Document::Table::TOTAL.times.map { Exercises::Tables::Multiplication.generate }
+  doc = Document::Table::build(title: "Table de Multiplications", questions: questions)
+  Document::put(document: doc, type: "tables")
+  redirect(uri("/"))
+end

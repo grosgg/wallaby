@@ -16,11 +16,8 @@ Sinatra app generating pdf documents of mathematics exercices with their solutio
 - Multiplications
 - Divisions
 - Problems
+- Multiplication tables
 
 ## Notes
 - Everything is hardcoded in French at the moment
 - Difficulty is arbitrary and harcoded
-
-## Objectives
-- Add more exercice types
-- Add layout options
